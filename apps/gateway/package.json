@@ -1,0 +1,29 @@
+{
+  "name": "@svaraa/gateway",
+  "version": "0.1.0",
+  "private": true,
+  "main": "expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@svaraa/mock-pendant": "workspace:*",
+    "@svaraa/protocol": "workspace:*",
+    "@svaraa/shared": "workspace:*",
+    "expo": "~52.0.23",
+    "expo-location": "~18.0.4",
+    "expo-status-bar": "~2.0.0",
+    "react": "18.3.1",
+    "react-native": "0.76.5",
+    "react-native-webview": "13.12.5"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

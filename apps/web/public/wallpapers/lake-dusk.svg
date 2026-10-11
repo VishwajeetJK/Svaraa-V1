@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c9d4e0"/>
+      <stop offset="45%" stop-color="#e8d5c4"/>
+      <stop offset="72%" stop-color="#d4b8a0"/>
+      <stop offset="100%" stop-color="#a8b8c4"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b8c4ce"/>
+      <stop offset="100%" stop-color="#8a9aaa"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f5e6b8" stop-opacity="0.95"/>
+      <stop offset="55%" stop-color="#e2c98f" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#e2c98f" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <circle cx="800" cy="420" r="120" fill="url(#sun)"/>
+  <ellipse cx="800" cy="430" rx="28" ry="28" fill="#f0e0b0" opacity="0.9"/>
+  <!-- distant hills -->
+  <path d="M0 480 Q200 430 400 470 T800 450 T1200 480 T1600 460 L1600 520 L0 520 Z" fill="#9a8a7a" opacity="0.35"/>
+  <path d="M0 500 Q300 460 600 495 T1200 485 T1600 510 L1600 560 L0 560 Z" fill="#7a6e62" opacity="0.4"/>
+  <!-- shore -->
+  <path d="M0 540 L1600 540 L1600 580 L0 580 Z" fill="#c4b09a" opacity="0.55"/>
+  <!-- water -->
+  <rect y="560" width="1600" height="340" fill="url(#water)"/>
+  <path d="M0 620 Q400 600 800 625 T1600 615" fill="none" stroke="#d8e0e6" stroke-width="2" opacity="0.35"/>
+  <path d="M0 680 Q500 655 900 685 T1600 670" fill="none" stroke="#d8e0e6" stroke-width="1.5" opacity="0.25"/>
+  <!-- pine silhouettes left -->
+  <g fill="#3a3f3c" opacity="0.72">
+    <path d="M80 900 L140 520 L200 900 Z"/>
+    <path d="M160 900 L210 560 L260 900 Z"/>
+    <path d="M240 900 L300 480 L360 900 Z"/>
+    <path d="M320 900 L370 540 L420 900 Z"/>
+    <path d="M40 900 L90 600 L140 900 Z"/>
+  </g>
+  <!-- pine silhouettes right -->
+  <g fill="#3a3f3c" opacity="0.72">
+    <path d="M1400 900 L1460 500 L1520 900 Z"/>
+    <path d="M1480 900 L1530 540 L1580 900 Z"/>
+    <path d="M1320 900 L1380 470 L1440 900 Z"/>
+    <path d="M1240 900 L1290 560 L1340 900 Z"/>
+    <path d="M1520 900 L1565 580 L1605 900 Z"/>
+  </g>
+</svg>

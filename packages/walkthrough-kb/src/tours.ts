@@ -1,0 +1,381 @@
+import type { Tour } from './types.js';
+
+/** Shorter focused tours (also listed in the Guide). */
+const FOCUSED_TOURS: Tour[] = [
+  {
+    id: 'first-five',
+    title: 'First 5 minutes',
+    subtitle: 'From welcome to Today and Talk',
+    audience: 'both',
+    steps: [
+      {
+        id: 'f1',
+        route: '/',
+        title: 'Welcome to Svaraa',
+        body: 'A gentle voice. A family close by. Start with household setup, or open Demo mode for an investor walkthrough.',
+        selector: '[data-tour="landing-brand"]',
+      },
+      {
+        id: 'f2',
+        route: '/onboarding',
+        title: 'Private setup',
+        body: 'Thirteen calm steps: account, private server region, wearer profile, Gateway permissions, pendant pair with auto hardware ID, AI Brain, privacy, family SOS, then a real SOS drill.',
+        selector: '[data-tour="onboarding-title"]',
+      },
+      {
+        id: 'f3',
+        route: '/today',
+        title: 'Today — is Amma alright?',
+        body: 'Status strip, needs attention, action items, and a live timeline. This is the board the family trusts.',
+        selector: '[data-tour="today-title"]',
+        action: 'demo-seed',
+      },
+      {
+        id: 'f4',
+        route: '/talk',
+        title: 'Talk with Lotus',
+        body: 'Ask mode answers; Do mode proposes actions that need OK. The same companion sits on the desktop left panel.',
+        selector: '[data-tour="talk-title"]',
+      },
+      {
+        id: 'f5',
+        route: '/safety',
+        title: 'Safety without auto-dial',
+        body: 'Run a drill, open the incident room, acknowledge. V1 never auto-dials 112 — a human taps Call 112.',
+        selector: '[data-tour="safety-title"]',
+        action: 'open-safety',
+      },
+    ],
+  },
+  {
+    id: 'seven-rs',
+    title: 'Seven R’s map',
+    subtitle: 'What the product does for the wearer',
+    audience: 'both',
+    steps: [
+      {
+        id: 'r1',
+        route: '/home',
+        title: 'App home',
+        body: 'Tiles are grouped Care · Memory · Spirit · World · Home · Safety. Everything opens in the web shell.',
+        selector: '[data-tour="apps-title"]',
+      },
+      {
+        id: 'r2',
+        route: '/recite',
+        title: 'Recite',
+        body: 'Devotional library streams Opus to the pendant speaker — not third-party music.',
+        selector: '[data-tour="recite-title"]',
+      },
+      {
+        id: 'r3',
+        route: '/reminders',
+        title: 'Remind',
+        body: 'Schedules compile to a 7-day / ≤64-slot snapshot on the pendant. Important meds can escalate to family.',
+        selector: '[data-tour="reminders-title"]',
+      },
+      {
+        id: 'r4',
+        route: '/recall',
+        title: 'Recall & Repository',
+        body: 'Recordings pull to the private tenant, then STT → summary → To-do. Wearer consent rules apply.',
+        selector: '[data-tour="recall-title"]',
+      },
+      {
+        id: 'r5',
+        route: '/connections',
+        title: 'Riddle — connections',
+        body: 'Calendars, health (wearer phone), SMS/calls, music OAuth, home hub. WhatsApp and watch are out of V1.',
+        selector: '[data-tour="connections-title"]',
+      },
+    ],
+  },
+  {
+    id: 'live-safety',
+    title: 'Live safety',
+    subtitle: 'SOS ladder and incident room',
+    audience: 'both',
+    steps: [
+      {
+        id: 's1',
+        route: '/safety',
+        title: 'Safety settings',
+        body: 'Ladder tiers T+0 push · T+2 SMS · T+5 call. Fall sensitivity and help words live here.',
+        selector: '[data-tour="safety-title"]',
+      },
+      {
+        id: 's2',
+        route: '/safety',
+        title: 'Drill first',
+        body: 'Setup and demos use DRILL-marked alerts. Pass when someone taps I’m on it within five minutes.',
+        selector: '[data-tour="safety-drill"]',
+        action: 'sos-drill',
+      },
+      {
+        id: 's3',
+        route: '/alerts',
+        title: 'Alerts',
+        body: 'Safety attention cards surface here and on Today. Quiet hours never silence Safety.',
+        selector: '[data-tour="alerts-title"]',
+      },
+    ],
+  },
+  {
+    id: 'hardware-editions',
+    title: 'Hardware editions',
+    subtitle: 'SL1-A Accessory vs SL1-F Fold-over',
+    audience: 'both',
+    steps: [
+      {
+        id: 'h1',
+        route: '/pendant',
+        title: 'Pendant hub',
+        body: 'Battery, connection, mics, storage, firmware. Panels change by model after auto-ID.',
+        selector: '[data-tour="pendant-title"]',
+        action: 'open-pendant',
+      },
+      {
+        id: 'h2',
+        route: '/pendant',
+        title: 'Auto-identify at setup',
+        body: 'BLE connect → read model → capability probe (wear-mode vs fold/privacy/USB). Coaching for charge and buttons branches automatically.',
+        selector: '[data-tour="pendant-model"]',
+      },
+      {
+        id: 'h3',
+        route: '/onboarding',
+        title: 'Pair step coaching',
+        body: 'On step 6, pick a mock SL1-A or SL1-F profile to see different charge, privacy, and button guidance.',
+        selector: '[data-tour="onboarding-title"]',
+      },
+    ],
+  },
+  {
+    id: 'privacy-server',
+    title: 'Private server & privacy',
+    subtitle: 'Region, consent, recording chip',
+    audience: 'both',
+    steps: [
+      {
+        id: 'p1',
+        route: '/privacy',
+        title: 'Privacy & consent',
+        body: 'Wearer-managed vs Family-managed modes, retention, audit log. Control plane never holds household content.',
+        selector: '[data-tour="privacy-title"]',
+      },
+      {
+        id: 'p2',
+        route: '/today',
+        title: 'Recording indicator',
+        body: 'The pendant has no recording light. Watch the pendant chip in the top bar — Connected, Recording, Mics off.',
+        selector: '[data-tour="today-title"]',
+      },
+      {
+        id: 'p3',
+        route: '/settings',
+        title: 'Language & Simple Mode',
+        body: 'UI EN/HI/TA. Simple Mode keeps large controls for the wearer.',
+        selector: '[data-tour="settings-title"]',
+      },
+    ],
+  },
+];
+
+/**
+ * Complete product walkthrough — every major V1 surface and capability.
+ * Start from Guide → “Full product walkthrough” or landing “Full walkthrough”.
+ */
+export const FULL_PRODUCT_TOUR: Tour = {
+  id: 'full-product',
+  title: 'Full product walkthrough',
+  subtitle: 'Every V1 feature — shell, Seven R’s, safety, hardware, privacy, Simple Mode',
+  audience: 'both',
+  steps: [
+    {
+      id: 'fp-01',
+      route: '/',
+      title: '1 · Brand & entry',
+      body: 'Svaraa Lite: a gentle voice for the elder, a calm window for the family. Set up a household, wearer self-setup, or Investor demo with a seeded Amma home.',
+      selector: '[data-tour="landing-brand"]',
+    },
+    {
+      id: 'fp-02',
+      route: '/onboarding',
+      title: '2 · Onboarding (13 steps)',
+      body: 'Account → private server region → household → wearer → Gateway BLE/GPS/push → pair with hardware auto-ID → AI Brain → recording consent → family SOS ladder → reminders → recite/music → news/routines → SOS drill (must be acked).',
+      selector: '[data-tour="onboarding-title"]',
+    },
+    {
+      id: 'fp-03',
+      route: '/home',
+      title: '3 · Desktop shell & apps',
+      body: 'Lake-at-dusk wallpaper, glass top bar (tabs, New chat, search, bell, pendant chip), companion on the left, 17 app tiles by Care · Memory · Spirit · World · Home · Safety.',
+      selector: '[data-tour="apps-title"]',
+      action: 'demo-seed',
+    },
+    {
+      id: 'fp-04',
+      route: '/today',
+      title: '4 · Today (Respond)',
+      body: 'Answers: is Amma alright, and what needs me? Status strip (pendant, phone, last spoke, next), Needs attention cards, action items, live timeline in pendant time.',
+      selector: '[data-tour="today-title"]',
+    },
+    {
+      id: 'fp-05',
+      route: '/talk',
+      title: '5 · Talk / companion Ask',
+      body: 'Same Lotus companion as the left panel. Ask for answers; switch to Do to propose checklists that wait for OK before anything changes.',
+      selector: '[data-tour="talk-title"]',
+    },
+    {
+      id: 'fp-06',
+      route: '/alerts',
+      title: '6 · Alerts',
+      body: 'Grouped Safety, Reminders, Device, Recall, and Family notifications. The bell in the top bar opens here. Quiet hours never silence Safety.',
+      selector: '[data-tour="alerts-title"]',
+    },
+    {
+      id: 'fp-07',
+      route: '/recall',
+      title: '7 · Recall (memory)',
+      body: 'Days cut into sessions with one-line summaries. Recitations are catalogued, not summarised. Sync progress from the pendant shows along the bottom.',
+      selector: '[data-tour="recall-title"]',
+    },
+    {
+      id: 'fp-08',
+      route: '/todo',
+      title: '8 · Repository → To-do',
+      body: 'Action items proposed from sessions sit on top until someone confirms. Tasks for Amma can carry a spoken reminder on the pendant.',
+      selector: '[data-tour="todo-title"]',
+    },
+    {
+      id: 'fp-09',
+      route: '/reminders',
+      title: '9 · Remind',
+      body: 'Morning → tomorrow grouping with taken / missed / progress. Important doses escalate to family. Footer shows what the pendant holds for the next seven days (≤64 slots).',
+      selector: '[data-tour="reminders-title"]',
+    },
+    {
+      id: 'fp-10',
+      route: '/prayer',
+      title: '10 · Prayer times',
+      body: 'Times from location + tradition. Each moment can speak on the pendant and optionally start a recitation. Hindu, Islam, Christian, Sikh, and custom schedules.',
+      selector: '[data-tour="prayer-title"]',
+    },
+    {
+      id: 'fp-11',
+      route: '/recite',
+      title: '11 · Recite',
+      body: 'Svaraa’s own Opus library streams to the pendant speaker — Amma’s playlists, daily schedule, and items the family sends. Not Spotify.',
+      selector: '[data-tour="recite-title"]',
+    },
+    {
+      id: 'fp-12',
+      route: '/music',
+      title: '12 · Music (remote only)',
+      body: 'Third-party streaming plays on phone, speaker, or hearing aids. The pendant is only the voice remote (“next song”, “quieter”).',
+      selector: '[data-tour="music-title"]',
+    },
+    {
+      id: 'fp-13',
+      route: '/news',
+      title: '13 · News briefing',
+      body: '≈90-second morning briefing in Amma’s language. Calm mode, topics, and curated sources. Mic / Calm controls stay aubergine in the brand palette.',
+      selector: '[data-tour="news-title"]',
+    },
+    {
+      id: 'fp-14',
+      route: '/routines',
+      title: '14 · Routines ribbon',
+      body: 'Quiet hours plus the day ribbon (briefing, check-in, prayer, digest). Safety is always exempt from quiet hours.',
+      selector: '[data-tour="routines-title"]',
+    },
+    {
+      id: 'fp-15',
+      route: '/connections',
+      title: '15 · Connections (Riddle)',
+      body: 'Calendar, Health (wearer phone), SMS/calls, music OAuth, home hub. Out of V1: WhatsApp alerts, Apple Find My / Google Find Hub, native watch apps.',
+      selector: '[data-tour="connections-title"]',
+    },
+    {
+      id: 'fp-16',
+      route: '/family',
+      title: '16 · Family circle',
+      body: 'Invite caregivers, edit SOS ladder tiers (lower = earlier), verified vs pending contacts. Emergency contacts without an app still get SMS and calls.',
+      selector: '[data-tour="family-title"]',
+    },
+    {
+      id: 'fp-17',
+      route: '/safety',
+      title: '17 · Rescue / Safety',
+      body: 'SOS ladder, fall sensitivity, help words, local emergency number, incident history. Never auto-dials emergency services.',
+      selector: '[data-tour="safety-title"]',
+    },
+    {
+      id: 'fp-18',
+      route: '/safety',
+      title: '18 · Live incident path',
+      body: 'Start a drill (or Demo ▸ SOS). Banner → Open incident → I’m on it → optional Call 112 by a human. Resolve needs an outcome.',
+      selector: '[data-tour="safety-drill"]',
+      action: 'sos-drill',
+    },
+    {
+      id: 'fp-19',
+      route: '/pendant',
+      title: '19 · Pendant hub',
+      body: 'Live battery, link, mics, storage, firmware. Restart coach and OTA gating copy branch by SL1-A vs SL1-F after auto-ID.',
+      selector: '[data-tour="pendant-title"]',
+      action: 'open-pendant',
+    },
+    {
+      id: 'fp-20',
+      route: '/pendant',
+      title: '20 · Hardware auto-ID',
+      body: 'Shared: nRF5340, BLE-only, no lights/display, 330 mAh, offline SOS/reminders. SL1-A: puck charge, wear modes. SL1-F: USB-C, fold Hall, privacy slider, loose-clip.',
+      selector: '[data-tour="pendant-model"]',
+    },
+    {
+      id: 'fp-21',
+      route: '/privacy',
+      title: '21 · Privacy & DPDP',
+      body: 'Consent mode, retention, export/delete stubs, audit log. Household content stays on the private tenant — never in control-plane logs.',
+      selector: '[data-tour="privacy-title"]',
+    },
+    {
+      id: 'fp-22',
+      route: '/settings',
+      title: '22 · Settings',
+      body: 'Theme (cream day / aubergine night), UI language EN/HI/TA, Simple Mode for the wearer, sign out. Health/About tiles land here in V1 stubs.',
+      selector: '[data-tour="settings-title"]',
+    },
+    {
+      id: 'fp-23',
+      route: '/simple',
+      title: '23 · Simple Mode (wearer)',
+      body: 'Large targets: Talk, Get Help, Play, My Day. Designed for tablet use by the elder — voice and feel first, few words on screen.',
+      selector: '[data-tour="simple-title"]',
+    },
+    {
+      id: 'fp-24',
+      route: '/today',
+      title: '24 · Demo panel & scenarios',
+      body: 'Bottom-left Demo ▸ injects SOS, fall check-in, missed med, offline, fold loose, and switches SL1-A ↔ SL1-F without re-onboarding. Use for investor demos.',
+      selector: '[data-tour="demo-panel"]',
+    },
+    {
+      id: 'fp-25',
+      route: '/home',
+      title: '25 · Architecture & out of V1',
+      body: 'Pendant ↔ Gateway BLE ↔ private Tenant ↔ Web / AI / alerts. Out of V1: watch apps, WhatsApp, Find My, auto-dial 112, pendant recording light, self-hosted server, licensed wake word. Ask the Guide FAQ anytime.',
+      selector: '[data-tour="apps-title"]',
+    },
+  ],
+};
+
+export const TOURS: Tour[] = [FULL_PRODUCT_TOUR, ...FOCUSED_TOURS];
+
+export function getTour(id: string): Tour | undefined {
+  return TOURS.find((t) => t.id === id);
+}
+
+export const FULL_TOUR_ID = FULL_PRODUCT_TOUR.id;

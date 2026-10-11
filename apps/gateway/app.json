@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "Svaraa Gateway",
+    "slug": "svaraa-gateway",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "backgroundColor": "#3B1F2B"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "family.svaraa.gateway",
+      "infoPlist": {
+        "NSBluetoothAlwaysUsageDescription": "Svaraa Gateway keeps a private link to the pendant.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Location helps family during SOS.",
+        "UIBackgroundModes": ["bluetooth-central", "location", "remote-notification"]
+      }
+    },
+    "android": {
+      "package": "family.svaraa.gateway",
+      "permissions": [
+        "BLUETOOTH",
+        "BLUETOOTH_CONNECT",
+        "BLUETOOTH_SCAN",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "POST_NOTIFICATIONS",
+        "REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow Svaraa to use your location for SOS context."
+        }
+      ]
+    ]
+  }
+}
