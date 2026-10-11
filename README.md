@@ -51,14 +51,15 @@ pnpm demo
 
 Starts control-plane, tenant, and web; seeds a demo household. Open http://localhost:5173/demo?demo=1 or click **Investor demo**. Use the **Guide** button (bottom-right) for tours, hardware explainers, and FAQ.
 
-## Temporary GitHub Pages deploy
+## Temporary GitHub Pages deploy (private repo)
 
-GitHub **cannot** host the Node control-plane/tenant APIs. For a temporary public demo, Actions builds the PWA with an **in-browser mock** (`VITE_STATIC_DEMO=true`) and deploys to **GitHub Pages**.
+Repo: [`VishwajeetJK/Svaraa-V1`](https://github.com/VishwajeetJK/Svaraa-V1) (private).
 
-1. Create a GitHub repo and push this project (default branch `main` or `master`).
-2. Repo **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-3. Push (or run workflow **Deploy GitHub Pages** manually).
-4. Open `https://vishwajeetjk.github.io/Svaraa-V1/` (or `https://<user>.github.io/<repo>/`) — use **Investor demo** / **Full feature walkthrough**.
+GitHub **cannot** host the Node control-plane/tenant APIs. Actions builds the PWA with an **in-browser mock** (`VITE_STATIC_DEMO=true`) and deploys to **GitHub Pages**. Private Pages need a plan that includes Pages for private repos (e.g. Pro); otherwise use **Actions → Deploy GitHub Pages** artifacts / local `preview:pages`.
+
+1. Repo **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+2. Push to `main` (or run workflow **Deploy GitHub Pages** manually).
+3. Open the Pages URL from the deploy environment — use **Investor demo** / **Full feature walkthrough**.
 
 Local preview of the Pages build:
 
