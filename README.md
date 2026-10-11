@@ -58,7 +58,7 @@ GitHub **cannot** host the Node control-plane/tenant APIs. For a temporary publi
 1. Create a GitHub repo and push this project (default branch `main` or `master`).
 2. Repo **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 3. Push (or run workflow **Deploy GitHub Pages** manually).
-4. Open `https://<user>.github.io/<repo>/` — use **Investor demo** / **Full feature walkthrough**.
+4. Open `https://vishwajeetjk.github.io/Svaraa-V1/` (or `https://<user>.github.io/<repo>/`) — use **Investor demo** / **Full feature walkthrough**.
 
 Local preview of the Pages build:
 
