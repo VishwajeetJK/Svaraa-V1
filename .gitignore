@@ -12,3 +12,6 @@ web-build
 *.db
 .venv-pdf
 .venv
+test-results
+playwright-report
+apps/web/test-results

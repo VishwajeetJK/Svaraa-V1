@@ -71,29 +71,13 @@ export function ShellLayout() {
   return (
     <>
       {connectionHealth === 'degraded' ? (
-        <div
-          role="status"
-          style={{
-            background: 'var(--status-attention-tint)',
-            color: 'var(--status-attention)',
-            padding: '10px 16px',
-            fontSize: 14,
-          }}
-        >
+        <div role="status" className="conn-banner conn-banner--degraded">
           Private server unreachable. Reminders and SOS still run on the pendant. Family alerts use
           control-plane fallback (phone numbers + location link only) until the household tenant returns.
         </div>
       ) : null}
       {connectionHealth === 'polling' ? (
-        <div
-          role="status"
-          style={{
-            background: 'var(--status-info-tint)',
-            color: 'var(--status-info)',
-            padding: '8px 16px',
-            fontSize: 13,
-          }}
-        >
+        <div role="status" className="conn-banner conn-banner--polling">
           Live updates paused — refreshing every 30 seconds.
         </div>
       ) : null}

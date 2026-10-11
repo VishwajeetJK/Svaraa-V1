@@ -46,7 +46,7 @@ export function LandingPage() {
     <div className="landing">
       <div className="landing__wallpaper" aria-hidden />
       <div className="landing__card">
-        <div style={{ display: 'grid', justifyItems: 'center', gap: 10 }}>
+        <div className="landing__brand-block">
           <LotusMark size={64} />
           <h1 data-tour="landing-brand" className="landing__brand">
             {t(locale, 'brand')}
@@ -54,11 +54,11 @@ export function LandingPage() {
         </div>
         <p className="landing__tagline">{t(locale, 'tagline')}</p>
         {demoHint ? (
-          <p style={{ margin: 0, color: 'var(--status-info)', fontSize: 14 }}>
+          <p className="landing__hint">
             Investor demo mode — use the Guide (bottom right) for the full walkthrough.
           </p>
         ) : null}
-        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+        <div className="landing__actions">
           <Button size="lg" onClick={() => navigate('/onboarding')}>
             Set up household
           </Button>

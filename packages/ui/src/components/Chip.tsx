@@ -37,9 +37,13 @@ export function PendantChip({
   }
 
   return (
-    <span className={`pendant-chip${safety ? ' pendant-chip--safety' : ''}`} data-state={state}>
+    <span
+      className={`pendant-chip${safety ? ' pendant-chip--safety' : ''}`}
+      data-state={state}
+      title={label}
+    >
       <span className="pendant-chip__dot" aria-hidden />
-      {label}
+      <span className="pendant-chip__label">{label}</span>
     </span>
   );
 }

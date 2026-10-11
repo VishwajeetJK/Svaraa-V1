@@ -55,6 +55,23 @@
   --space-7: 48px;
   --space-8: 64px;
 
+  /* Fluid type + layout that track viewport width */
+  --page-pad-x: clamp(0.75rem, 2.2vw, 1.75rem);
+  --page-pad-y: clamp(0.75rem, 1.8vw, 1.5rem);
+  --shell-gap: clamp(0.75rem, 1.6vw, 1.25rem);
+  --shell-max: min(1440px, 100%);
+  --font-size-ui: clamp(0.9375rem, 0.9rem + 0.2vw, 1rem);
+  --font-size-display: clamp(1.75rem, 1.35rem + 1.6vw, 2.75rem);
+  --font-size-title: clamp(1.35rem, 1.15rem + 0.9vw, 2.125rem);
+  --font-size-body: clamp(0.9375rem, 0.9rem + 0.15vw, 1rem);
+  --tile-size: clamp(3.25rem, 2.6rem + 2.2vw, 4rem);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --vh: 1vh;
+  --app-height: 100dvh;
+
   --font-display: 'Lora', Georgia, serif;
   --font-ui: 'Lato', 'Noto Sans', system-ui, sans-serif;
   --font-indic: 'Noto Sans', 'Lato', system-ui, sans-serif;
@@ -126,20 +143,36 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 html,
 body,
 #root {
   min-height: 100%;
+  min-height: var(--app-height);
 }
 
 body {
   margin: 0;
   font-family: var(--font-ui);
-  font-size: 16px;
-  line-height: 24px;
+  font-size: var(--font-size-ui);
+  line-height: 1.5;
   color: var(--text-primary);
   background: #1a1c20;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
 }
 
 h1,
@@ -148,6 +181,7 @@ h3,
 .display {
   font-family: var(--font-display);
   font-weight: 600;
+  overflow-wrap: anywhere;
 }
 
 button,

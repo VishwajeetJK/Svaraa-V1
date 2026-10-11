@@ -7,13 +7,11 @@ export function SimpleModePage() {
   const navigate = useNavigate();
   const name = 'Amma';
   return (
-    <div style={{ minHeight: '100vh', padding: 24, background: 'var(--bg-canvas)' }}>
-      <h1 data-tour="simple-title" style={{ fontFamily: 'var(--font-display)', fontSize: 40 }}>
+    <div className="simple-mode">
+      <h1 data-tour="simple-title" className="simple-mode__title">
         Namaste, {name}
       </h1>
-      <p style={{ fontSize: 22, color: 'var(--text-secondary)' }}>
-        Next: {today?.nextReminder?.title ?? 'a quiet stretch'}
-      </p>
+      <p className="simple-mode__sub">Next: {today?.nextReminder?.title ?? 'a quiet stretch'}</p>
       <div className="simple-grid">
         <button className="simple-tile" type="button" onClick={() => navigate('/talk')}>
           {t(locale, 'talk')}
@@ -30,7 +28,7 @@ export function SimpleModePage() {
       </div>
       <button
         type="button"
-        style={{ marginTop: 24, fontSize: 18, background: 'none', border: 'none', color: 'var(--text-secondary)' }}
+        className="simple-mode__exit"
         onClick={() => {
           setSimpleMode(false);
           navigate('/home');
